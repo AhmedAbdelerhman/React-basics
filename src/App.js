@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./components/Expenses/Expense.css";
+import Card from "./components/UI/Card";
+import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
+import { useState } from "react";
 function App() {
+  const [formData, SetFormDate] = useState("")
+
+  const onFormSubmitHandler = (FormData) => {
+    console.log("in app.js");
+    SetFormDate(FormData)
+
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Card className="expenses">
+      <NewExpense  onFormSubmit={onFormSubmitHandler}/>
+      <Expenses  getFormDate={formData} />
+    </Card>
   );
 }
 
